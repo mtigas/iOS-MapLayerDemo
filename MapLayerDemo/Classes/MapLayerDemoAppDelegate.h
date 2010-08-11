@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface MapLayerDemoAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MapLayerDemoAppDelegate : NSObject <UIApplicationDelegate, MKMapViewDelegate> {
     UIWindow *window;
 }
 

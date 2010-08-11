@@ -17,6 +17,8 @@
 		69BE085D1212808600B4A2DE /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69BE085C1212808600B4A2DE /* Three20.bundle */; };
 		69BE08B71212825E00B4A2DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08B61212825E00B4A2DE /* MapKit.framework */; };
 		69BE08BB1212826500B4A2DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08BA1212826500B4A2DE /* CoreLocation.framework */; };
+		69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08DE1212832700B4A2DE /* CustomOverlayView.m */; };
+		69BE08E21212832C00B4A2DE /* CustomTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08E11212832C00B4A2DE /* CustomTileOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,42 +26,42 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 69BE08411212807300B4A2DE /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Core.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
 		69BE084B1212807300B4A2DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 69BE08411212807300B4A2DE /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* CoreUnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		69BE08561212807C00B4A2DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 69BE084D1212807C00B4A2DE /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2 /* libThree20Network.a */;
+			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 		69BE08581212807C00B4A2DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 69BE084D1212807C00B4A2DE /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = UnitTests;
 		};
 		69BE0898121280DD00B4A2DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 69BE08411212807300B4A2DE /* Three20Core.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Core */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Core;
 		};
 		69BE089A121280DF00B4A2DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 69BE084D1212807C00B4A2DE /* Three20Network.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = BEF31F390F352DF5000DE5D2 /* Three20Network */;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = Three20Network;
 		};
 /* End PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		69BE085C1212808600B4A2DE /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../third_party/three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
 		69BE08B61212825E00B4A2DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		69BE08BA1212826500B4A2DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		69BE08DD1212832700B4A2DE /* CustomOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomOverlayView.h; path = Classes/CustomOverlayView.h; sourceTree = SOURCE_ROOT; };
+		69BE08DE1212832700B4A2DE /* CustomOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomOverlayView.m; path = Classes/CustomOverlayView.m; sourceTree = SOURCE_ROOT; };
+		69BE08E01212832C00B4A2DE /* CustomTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTileOverlay.h; path = Classes/CustomTileOverlay.h; sourceTree = SOURCE_ROOT; };
+		69BE08E11212832C00B4A2DE /* CustomTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTileOverlay.m; path = Classes/CustomTileOverlay.m; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* MapLayerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MapLayerDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +108,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				69BE08D91212830F00B4A2DE /* Model */,
+				69BE08DA1212831600B4A2DE /* View */,
 				1D3623240D0F684500981E51 /* MapLayerDemoAppDelegate.h */,
 				1D3623250D0F684500981E51 /* MapLayerDemoAppDelegate.m */,
 			);
@@ -176,6 +184,24 @@
 				69BE08591212807C00B4A2DE /* UnitTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		69BE08D91212830F00B4A2DE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				69BE08E01212832C00B4A2DE /* CustomTileOverlay.h */,
+				69BE08E11212832C00B4A2DE /* CustomTileOverlay.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		69BE08DA1212831600B4A2DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				69BE08DD1212832700B4A2DE /* CustomOverlayView.h */,
+				69BE08DE1212832700B4A2DE /* CustomOverlayView.m */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +302,8 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MapLayerDemoAppDelegate.m in Sources */,
+				69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */,
+				69BE08E21212832C00B4A2DE /* CustomTileOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
