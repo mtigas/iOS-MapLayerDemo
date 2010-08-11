@@ -1,8 +1,11 @@
 # iOS Custom Map Layer Example #
 
-A demo app that demonstrates the use of some new [MapKit][mkdoc] functionality in iOS 4.0:
-The [MKOverlay][mkoverlay] protocol and [MKOverlayView][mkoverlayview] class and how
-to use these to render custom tile layers [a la Google Maps API][imagemaptype].
+**A barebones demo app that demonstrates the use of some new [MapKit][mkdoc] functionality
+in iOS 4.0.**:
+
+The *[MKOverlay][mkoverlay]* protocol and *[MKOverlayView][mkoverlayview]* class and how
+to use these to render custom tile layers [a la Google Maps API][imagemaptype]. (i.e. Google
+Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, etc. See below for a django-gheat example.)
 
 [mkdoc]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MapKit_Framework_Reference/
 [mkoverlay]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlay_protocol/Reference/Reference.html
@@ -12,14 +15,31 @@ to use these to render custom tile layers [a la Google Maps API][imagemaptype].
 ## What? ##
 
 I refactored [django-gheat](http://github.com/mtigas/django-gheat) as a side project a few
-weeks ago. I've been working on iOS development a bit lately and was seeking a slick way to
-plug the [demo](http://gheat.miketigas.com/) tileserver into the iPhone. The Google Maps API
-just doesn't have enough performance in the browser to make for a decent user experience.
+weeks ago. I’ve been working on iOS development a bit lately and was seeking a slick way to
+plug the **[django-gheat demo][gheat_demo] tileserver** into the iPhone. The Google Maps API
+just doesn’t have enough performance in the browser to make for a decent user experience.
 
 Some conversation threads recommended combining a UIScrollView with [CATiledLayer][catiledlayer],
 but this seemed unwieldy to couple with the existing MapKit framework.
 
 Lo and behold, iOS 4.0 added custom overlay functionality to MapKit, though I have not seen *any*
-mention or example of it's use to date.
+mention or example of it’s use to date.
 
+[gheat_demo]: http://gheat.miketigas.com/
 [catiledlayer]: https://developer.apple.com/mac/library/documentation/GraphicsImaging/Reference/CATiledLayer_class/Introduction/Introduction.html
+
+## Notes ##
+
+The code is generally commented thoroughly. I am not an expert in cartography, so
+my knowledge of map projections and some of the calculations within the code are to be taken
+with a grain of salt.
+
+The [MKOverlayView -canDrawMapRect…] and [MKOverlayView -drawMapRect…] methods rely on asynchronously
+downloading tiles as requested (by -canDrawMapRect) into cache, and then using that cache in the
+-drawMapRect method after the success callback notifies MapKit to try the tile again. I am using
+the Three20Network sub-library from [Facebook’s Three20](http://github.com/facebook/three20) and using
+the [TTURLRequest](http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLRequest.h)/
+[TTURLCache](http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLCache.h) stack
+to handle cache storage to disk/memory.
+
+[Comments are welcome](https://mike.tig.as/contact/)
