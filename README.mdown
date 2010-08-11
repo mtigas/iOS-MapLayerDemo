@@ -1,0 +1,25 @@
+# iOS Custom Map Layer Example #
+
+A demo app that demonstrates the use of some new [MapKit][mkdoc] functionality in iOS 4.0:
+The [MKOverlay][mkoverlay] protocol and [MKOverlayView][mkoverlayview] class and how
+to use these to render custom tile layers [a la Google Maps API][imagemaptype].
+
+[mkdoc]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MapKit_Framework_Reference/
+[mkoverlay]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlay_protocol/Reference/Reference.html
+[mkoverlayview]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlayView_class/Reference/Reference.html
+[imagemaptype]: https://code.google.com/apis/maps/documentation/javascript/maptypes.html#ImageMapTypes
+
+## What? ##
+
+I refactored [django-gheat](http://github.com/mtigas/django-gheat) as a side project a few
+weeks ago. I've been working on iOS development a bit lately and was seeking a slick way to
+plug the [demo](http://gheat.miketigas.com/) tileserver into the iPhone. The Google Maps API
+just doesn't have enough performance in the browser to make for a decent user experience.
+
+Some conversation threads recommended combining a UIScrollView with [CATiledLayer][catiledlayer],
+but this seemed unwieldy to couple with the existing MapKit framework.
+
+Lo and behold, iOS 4.0 added custom overlay functionality to MapKit, though I have not seen *any*
+mention or example of it's use to date.
+
+[catiledlayer]: https://developer.apple.com/mac/library/documentation/GraphicsImaging/Reference/CATiledLayer_class/Introduction/Introduction.html
