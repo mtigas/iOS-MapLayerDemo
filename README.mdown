@@ -12,6 +12,8 @@ Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, 
 [mkoverlayview]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlayView_class/Reference/Reference.html
 [imagemaptype]: https://code.google.com/apis/maps/documentation/javascript/maptypes.html#ImageMapTypes
 
+[Comments and feedback are welcome.](https://mike.tig.as/contact/)
+
 ## What? ##
 
 I refactored [django-gheat](http://github.com/mtigas/django-gheat) as a side project a few
@@ -34,12 +36,11 @@ The code is generally commented thoroughly. I am not an expert in cartography, s
 my knowledge of map projections and some of the calculations within the code are to be taken
 with a grain of salt.
 
-The [MKOverlayView -canDrawMapRect…] and [MKOverlayView -drawMapRect…] methods rely on asynchronously
-downloading tiles as requested (by -canDrawMapRect) into cache, and then using that cache in the
--drawMapRect method after the success callback notifies MapKit to try the tile again. I am using
-the Three20Network sub-library from [Facebook’s Three20](http://github.com/facebook/three20) and using
+The `[MKOverlayView -canDrawMapRect…]` and `[MKOverlayView -drawMapRect…]` methods rely on asynchronously
+downloading tiles as requested (by `-canDrawMapRect`) into cache, and then using that cache in the
+`-drawMapRect` method after the success callback notifies MapKit to try the tile again. 
+
+I am using the Three20Network sub-library from [Facebook’s Three20](http://github.com/facebook/three20) and using
 the [TTURLRequest](http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLRequest.h)/
 [TTURLCache](http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLCache.h) stack
-to handle cache storage to disk/memory.
-
-[Comments are welcome](https://mike.tig.as/contact/)
+to handle cache storage to disk/memory. The necessary sub-libraries are bundled in this repository.
