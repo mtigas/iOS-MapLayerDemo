@@ -15,6 +15,8 @@
 		69BE085A1212807E00B4A2DE /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08571212807C00B4A2DE /* libThree20Network.a */; };
 		69BE085B1212807F00B4A2DE /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE084A1212807300B4A2DE /* libThree20Core.a */; };
 		69BE085D1212808600B4A2DE /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69BE085C1212808600B4A2DE /* Three20.bundle */; };
+		69BE08B71212825E00B4A2DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08B61212825E00B4A2DE /* MapKit.framework */; };
+		69BE08BB1212826500B4A2DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08BA1212826500B4A2DE /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		69BE08411212807300B4A2DE /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../third_party/three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		69BE084D1212807C00B4A2DE /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../third_party/three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		69BE085C1212808600B4A2DE /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../third_party/three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		69BE08B61212825E00B4A2DE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		69BE08BA1212826500B4A2DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* MapLayerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MapLayerDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +91,8 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				69BE085A1212807E00B4A2DE /* libThree20Network.a in Frameworks */,
 				69BE085B1212807F00B4A2DE /* libThree20Core.a in Frameworks */,
+				69BE08B71212825E00B4A2DE /* MapKit.framework in Frameworks */,
+				69BE08BB1212826500B4A2DE /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +154,8 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				69BE08BA1212826500B4A2DE /* CoreLocation.framework */,
+				69BE08B61212825E00B4A2DE /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
