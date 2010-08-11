@@ -14,6 +14,8 @@ Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, 
 
 [Comments and feedback are welcome.](https://mike.tig.as/contact/)
 
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen1.png" style="width:185px"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2-lg.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2.png" style="width:185px"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen3-lg.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen3.png" style="width:185px"/></a>
+
 ## What? ##
 
 I refactored [django-gheat](http://github.com/mtigas/django-gheat) as a side project a few
@@ -35,6 +37,11 @@ mention or example of it’s use to date.
 The code is generally commented thoroughly. I am not an expert in cartography, so
 my knowledge of map projections and some of the calculations within the code are to be taken
 with a grain of salt.
+
+`CustomOverlayView` compensates for `[[UIScreen mainScreen] scale]`, or the iPhone 4’s pixel doubling.
+The view applies the screen scale factor, creating a situation as if the screen were twice as large.
+Because MapKit loads pixel-doubled tiles but maintains the same viewport, `CustomOverlayView` renders tiles
+of the *next* (or scale-appropriate) zoom level to maintain a one-to-one mapping with MapKit’s own tiles.
 
 The `[MKOverlayView -canDrawMapRect…]` and `[MKOverlayView -drawMapRect…]` methods rely on asynchronously
 downloading tiles as requested (by `-canDrawMapRect`) into cache, and then using that cache in the
