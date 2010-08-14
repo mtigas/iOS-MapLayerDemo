@@ -18,7 +18,8 @@
 		69BE08B71212825E00B4A2DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08B61212825E00B4A2DE /* MapKit.framework */; };
 		69BE08BB1212826500B4A2DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08BA1212826500B4A2DE /* CoreLocation.framework */; };
 		69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08DE1212832700B4A2DE /* CustomOverlayView.m */; };
-		69BE08E21212832C00B4A2DE /* CustomTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08E11212832C00B4A2DE /* CustomTileOverlay.m */; };
+		69BE08E21212832C00B4A2DE /* GheatTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08E11212832C00B4A2DE /* GheatTileOverlay.m */; };
+		69F152591217259900F36A26 /* OSMTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F152581217259900F36A26 /* OSMTileOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +83,10 @@
 		69BE08BA1212826500B4A2DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69BE08DD1212832700B4A2DE /* CustomOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomOverlayView.h; path = Classes/CustomOverlayView.h; sourceTree = SOURCE_ROOT; };
 		69BE08DE1212832700B4A2DE /* CustomOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomOverlayView.m; path = Classes/CustomOverlayView.m; sourceTree = SOURCE_ROOT; };
-		69BE08E01212832C00B4A2DE /* CustomTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTileOverlay.h; path = Classes/CustomTileOverlay.h; sourceTree = SOURCE_ROOT; };
-		69BE08E11212832C00B4A2DE /* CustomTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTileOverlay.m; path = Classes/CustomTileOverlay.m; sourceTree = SOURCE_ROOT; };
+		69BE08E01212832C00B4A2DE /* GheatTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GheatTileOverlay.h; sourceTree = "<group>"; };
+		69BE08E11212832C00B4A2DE /* GheatTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GheatTileOverlay.m; sourceTree = "<group>"; };
+		69F152571217259900F36A26 /* OSMTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMTileOverlay.h; sourceTree = "<group>"; };
+		69F152581217259900F36A26 /* OSMTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSMTileOverlay.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MapLayerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MapLayerDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,8 +192,10 @@
 		69BE08D91212830F00B4A2DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				69BE08E01212832C00B4A2DE /* CustomTileOverlay.h */,
-				69BE08E11212832C00B4A2DE /* CustomTileOverlay.m */,
+				69BE08E01212832C00B4A2DE /* GheatTileOverlay.h */,
+				69BE08E11212832C00B4A2DE /* GheatTileOverlay.m */,
+				69F152571217259900F36A26 /* OSMTileOverlay.h */,
+				69F152581217259900F36A26 /* OSMTileOverlay.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -234,6 +239,9 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MapLayerDemo" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectReferences = (
@@ -303,7 +311,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MapLayerDemoAppDelegate.m in Sources */,
 				69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */,
-				69BE08E21212832C00B4A2DE /* CustomTileOverlay.m in Sources */,
+				69BE08E21212832C00B4A2DE /* GheatTileOverlay.m in Sources */,
+				69F152591217259900F36A26 /* OSMTileOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

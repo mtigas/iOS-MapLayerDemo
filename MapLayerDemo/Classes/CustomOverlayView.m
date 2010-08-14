@@ -1,5 +1,5 @@
 #import "CustomOverlayView.h"
-#import "CustomTileOverlay.h"
+#import "GheatTileOverlay.h"
 #import "Three20Network/Three20Network.h"
 
 #pragma mark Private methods
@@ -139,7 +139,7 @@
     NSUInteger tilex = floor(mercatorPoint.x * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
     NSUInteger tiley = floor(mercatorPoint.y * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
     
-    NSString *url = [(CustomTileOverlay *)self.overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
+    NSString *url = [(GheatTileOverlay *)self.overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
     
     // Given the URL, check the cache to see if we have the tile requested.
     // (In theory, this cache/get/callback process *could* be part of the tile
@@ -188,13 +188,15 @@
  * to be rendered.
  */
 - (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context {
+    GheatTileOverlay *overlay = (GheatTileOverlay *)self.overlay;
+    
     NSUInteger zoomLevel = [self zoomLevelForZoomScale:zoomScale];
     CGPoint mercatorPoint = [self mercatorTileOriginForMapRect:mapRect];
     
     NSUInteger tilex = floor(mercatorPoint.x * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
     NSUInteger tiley = floor(mercatorPoint.y * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
 
-    NSString *url = [(CustomTileOverlay *)self.overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
+    NSString *url = [overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
     
     // Load the image from cache.
     TTURLCache *cache = [TTURLCache sharedCache];
@@ -204,7 +206,7 @@
         
         // Perform the image render on the current UI context
         UIGraphicsPushContext(context);
-        [img drawInRect:[self rectForMapRect:mapRect] blendMode:kCGBlendModeNormal alpha:0.8];
+        [img drawInRect:[self rectForMapRect:mapRect] blendMode:kCGBlendModeNormal alpha:overlay.defaultAlpha];
         UIGraphicsPopContext();
         
         [img release];

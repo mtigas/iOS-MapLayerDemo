@@ -1,13 +1,16 @@
-#import "CustomTileOverlay.h"
+#import "OSMTileOverlay.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@implementation CustomTileOverlay
+@implementation OSMTileOverlay
 @synthesize boundingMapRect; // from <MKOverlay>
 @synthesize coordinate;      // from <MKOverlay>
+@synthesize defaultAlpha;
 
 -(id) init {
     self = [super init];
+    
+    defaultAlpha = 1;
     
     // I am still not well-versed in map projections, but the Google Mercator projection
     // is slightly off from the "standard" Mercator projection, used by MapKit. (GMerc is used
@@ -28,6 +31,6 @@
 }
 
 - (NSString *)urlForPointWithX:(NSUInteger)x andY:(NSUInteger)y andZoomLevel:(NSUInteger)zoomLevel {
-    return [NSString stringWithFormat:@"http://gheat.miketigas.com/tweetmap/tiles/firetrans/%d/%d,%d.png",zoomLevel,x,y];
+    return [NSString stringWithFormat:@"http://tile.openstreetmap.org/%d/%d/%d.png",zoomLevel,x,y];
 }
 @end

@@ -10,7 +10,9 @@
  * serious processing bits (custom drawing vector drawing with CoreGraphics,
  * for example) could also live here.
  */
-@interface CustomTileOverlay : NSObject <MKOverlay> {
+@interface OSMTileOverlay : NSObject <MKOverlay> {
+    CGFloat defaultAlpha;
 }
+@property (nonatomic) CGFloat defaultAlpha;
 - (NSString *)urlForPointWithX:(NSUInteger)x andY:(NSUInteger)y andZoomLevel:(NSUInteger)zoomLevel;
 @end

@@ -7,5 +7,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
+- (void)toggleLayers:(id)sender;
 @end
 
