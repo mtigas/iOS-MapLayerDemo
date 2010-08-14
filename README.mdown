@@ -5,7 +5,7 @@ in iOS 4.0.**:
 
 The *[MKOverlay][mkoverlay]* protocol and *[MKOverlayView][mkoverlayview]* class and how
 to use these to render custom tile layers [a la Google Maps API][imagemaptype]. (i.e. Google
-Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, etc. See below for a django-gheat example.)
+Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, etc. Gheat and OpenStreetMap layer demos are included.)
 
 [mkdoc]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MapKit_Framework_Reference/
 [mkoverlay]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlay_protocol/Reference/Reference.html
@@ -14,7 +14,9 @@ Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, 
 
 [Comments and feedback are welcome.](https://mike.tig.as/contact/)
 
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen1.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2-lg.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2.png" width="325"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen3-lg.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen3.png" width="325"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen1.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen2.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen2.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2-lg.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2.png" width="325"/></a>
+
+(iPhone 4 screenshot is outdated.)
 
 ## What? ##
 
