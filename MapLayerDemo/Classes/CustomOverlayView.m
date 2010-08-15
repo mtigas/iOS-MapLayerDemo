@@ -232,4 +232,16 @@
     [self setNeedsDisplayInMapRect:mapRect zoomScale:zoomScale];
 }
 
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc {
+    // Cancel any outstanding tile requests, otherwise the callbacks
+    // to this delegate will crash when this OverlayView is gone.
+    [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
+    
+    [super dealloc];
+}
+
 @end
