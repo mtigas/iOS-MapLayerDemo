@@ -2,6 +2,7 @@
 #import "MapLayerDemoAppDelegate.h"
 #import "GheatTileOverlay.h"
 #import "OSMTileOverlay.h"
+#import "CDistrictsTileOverlay.h"
 #import "CustomOverlayView.h"
 
 @implementation MapLayerDemoAppDelegate
@@ -76,7 +77,14 @@
             break;
         }
     }
-    
+
+    for (id subView in window.subviews) {
+        if ([subView class] == [UILabel class]) {
+            [(UILabel *)subView removeFromSuperview];
+            break;
+        }
+    }
+            
     // Just break if we somehow don't have a MKMapView attached to the window
     if (mapView == nil) return;
     
@@ -93,11 +101,41 @@
         OSMTileOverlay *overlay = [[OSMTileOverlay alloc] init];
         [mapView addOverlay:overlay];
         [overlay release];
+
+        UILabel *attribution = [[UILabel alloc] initWithFrame:CGRectMake(
+                                                                         window.bounds.size.width-250,
+                                                                         window.bounds.size.height-30,
+                                                                         240, 25)];
+        attribution.text = @"OpenStreetMap (CC-BY-SA)";
+        attribution.textAlignment = UITextAlignmentRight;
+        attribution.backgroundColor = [UIColor clearColor];
+        [window addSubview:attribution];
+        [window bringSubviewToFront:attribution];
+        
     } else if (toggleButton.tag == 100) {
-        // Was at OSM, set to None
+        // Was at OSM, set to CDistricts
+        
+        [toggleButton setTitle:@"CDistricts" forState:UIControlStateNormal];
+        toggleButton.tag = 101;
+
+        CDistrictsTileOverlay *overlay = [[CDistrictsTileOverlay alloc] init];
+        [mapView addOverlay:overlay];
+        [overlay release];
+        
+        UILabel *attribution = [[UILabel alloc] initWithFrame:CGRectMake(
+                                                                        window.bounds.size.width-250,
+                                                                        window.bounds.size.height-30,
+                                                                        240, 25)];
+        attribution.text = @"MapBox (CC-BY-SA)";
+        attribution.textAlignment = UITextAlignmentRight;
+        attribution.backgroundColor = [UIColor clearColor];
+        [window addSubview:attribution];
+        [window bringSubviewToFront:attribution];
+    } else if (toggleButton.tag == 101) {
+        // Was at CDistricts, set to None
         
         [toggleButton setTitle:@"None" forState:UIControlStateNormal];
-        toggleButton.tag = 101;
+        toggleButton.tag = 102;
         
     } else {
         // Was at None, set to Tweetmap
