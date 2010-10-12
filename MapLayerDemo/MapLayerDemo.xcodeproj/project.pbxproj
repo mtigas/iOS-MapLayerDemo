@@ -19,7 +19,6 @@
 		69BE08B71212825E00B4A2DE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08B61212825E00B4A2DE /* MapKit.framework */; };
 		69BE08BB1212826500B4A2DE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08BA1212826500B4A2DE /* CoreLocation.framework */; };
 		69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08DE1212832700B4A2DE /* CustomOverlayView.m */; };
-		69BE08E21212832C00B4A2DE /* GheatTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69BE08E11212832C00B4A2DE /* GheatTileOverlay.m */; };
 		69F152591217259900F36A26 /* OSMTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 69F152581217259900F36A26 /* OSMTileOverlay.m */; };
 /* End PBXBuildFile section */
 
@@ -77,9 +76,9 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MapLayerDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLayerDemo_Prefix.pch; sourceTree = "<group>"; };
-		6977A527121E5E120024FE6F /* GheatTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GheatTileOverlay.h; sourceTree = "<group>"; };
 		6977A528121E5E320024FE6F /* CDistrictsTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDistrictsTileOverlay.h; sourceTree = "<group>"; };
 		6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDistrictsTileOverlay.m; sourceTree = "<group>"; };
+		69BA8FFA1264E71E00E85A65 /* TileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlay.h; sourceTree = "<group>"; };
 		69BE08411212807300B4A2DE /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../third_party/three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		69BE084D1212807C00B4A2DE /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../third_party/three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		69BE085C1212808600B4A2DE /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../third_party/three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
@@ -87,7 +86,6 @@
 		69BE08BA1212826500B4A2DE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		69BE08DD1212832700B4A2DE /* CustomOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomOverlayView.h; path = Classes/CustomOverlayView.h; sourceTree = SOURCE_ROOT; };
 		69BE08DE1212832700B4A2DE /* CustomOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomOverlayView.m; path = Classes/CustomOverlayView.m; sourceTree = SOURCE_ROOT; };
-		69BE08E11212832C00B4A2DE /* GheatTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GheatTileOverlay.m; sourceTree = "<group>"; };
 		69F152571217259900F36A26 /* OSMTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMTileOverlay.h; sourceTree = "<group>"; };
 		69F152581217259900F36A26 /* OSMTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSMTileOverlay.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* MapLayerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MapLayerDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -195,10 +193,9 @@
 		69BE08D91212830F00B4A2DE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				69BA8FFA1264E71E00E85A65 /* TileOverlay.h */,
 				6977A528121E5E320024FE6F /* CDistrictsTileOverlay.h */,
 				6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */,
-				6977A527121E5E120024FE6F /* GheatTileOverlay.h */,
-				69BE08E11212832C00B4A2DE /* GheatTileOverlay.m */,
 				69F152571217259900F36A26 /* OSMTileOverlay.h */,
 				69F152581217259900F36A26 /* OSMTileOverlay.m */,
 			);
@@ -317,7 +314,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* MapLayerDemoAppDelegate.m in Sources */,
 				69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */,
-				69BE08E21212832C00B4A2DE /* GheatTileOverlay.m in Sources */,
 				69F152591217259900F36A26 /* OSMTileOverlay.m in Sources */,
 				6977A52A121E5E320024FE6F /* CDistrictsTileOverlay.m in Sources */,
 			);

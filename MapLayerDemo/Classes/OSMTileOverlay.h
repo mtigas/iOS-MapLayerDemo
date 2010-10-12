@@ -1,11 +1,10 @@
 #import <MapKit/MapKit.h>
+#import "TileOverlay.h"
 
 /**
  * Tile layer that uses tiles from the OpenStreetMap project.
  */
-@interface OSMTileOverlay : NSObject <MKOverlay> {
+@interface OSMTileOverlay : NSObject <TileOverlay> {
     CGFloat defaultAlpha;
 }
-@property (nonatomic) CGFloat defaultAlpha;
-- (NSString *)urlForPointWithX:(NSUInteger)x andY:(NSUInteger)y andZoomLevel:(NSUInteger)zoomLevel;
 @end

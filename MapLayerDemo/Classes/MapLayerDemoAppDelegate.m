@@ -1,6 +1,5 @@
 #import "Three20Network/Three20Network.h"
 #import "MapLayerDemoAppDelegate.h"
-#import "GheatTileOverlay.h"
 #import "OSMTileOverlay.h"
 #import "CDistrictsTileOverlay.h"
 #import "CustomOverlayView.h"
@@ -38,7 +37,7 @@
     [mapView setDelegate:self];
 
     // ----- Add our overlay layer to the map
-    GheatTileOverlay *overlay = [[GheatTileOverlay alloc] init];
+    OSMTileOverlay *overlay = [[OSMTileOverlay alloc] init];
     [mapView addOverlay:overlay];
     [overlay release];
 
@@ -49,10 +48,22 @@
     UIButton *toggleButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     toggleButton.frame = CGRectMake(window.bounds.size.width-110, 45, 100, 35);
     toggleButton.tag = 99;
-    [toggleButton setTitle:@"tweetmap" forState:UIControlStateNormal];
+    [toggleButton setTitle:@"OSM" forState:UIControlStateNormal];
     [toggleButton addTarget:self action:@selector(toggleLayers:) forControlEvents:UIControlEventTouchUpInside];
     [window addSubview:toggleButton];
     [window bringSubviewToFront:toggleButton];
+
+    UILabel *attribution = [[UILabel alloc] initWithFrame:CGRectMake(
+                                                                     window.bounds.size.width-250,
+                                                                     window.bounds.size.height-30,
+                                                                     240, 25)];
+    attribution.text = @"OpenStreetMap (CC-BY-SA)";
+    attribution.textAlignment = UITextAlignmentRight;
+    attribution.backgroundColor = [UIColor clearColor];
+    [window addSubview:attribution];
+    [window bringSubviewToFront:attribution];
+
+    
     
     [window makeKeyAndVisible];
     
@@ -92,11 +103,11 @@
     [mapView removeOverlays:mapView.overlays];
 
     
-    if (toggleButton.tag == 99) {
+    if (toggleButton.tag == 101) {
         // Was at tweetmap, set to OSM
         
         [toggleButton setTitle:@"OSM" forState:UIControlStateNormal];
-        toggleButton.tag = 100;
+        toggleButton.tag = 99;
         
         OSMTileOverlay *overlay = [[OSMTileOverlay alloc] init];
         [mapView addOverlay:overlay];
@@ -112,11 +123,11 @@
         [window addSubview:attribution];
         [window bringSubviewToFront:attribution];
         
-    } else if (toggleButton.tag == 100) {
+    } else if (toggleButton.tag == 99) {
         // Was at OSM, set to CDistricts
         
         [toggleButton setTitle:@"CDistricts" forState:UIControlStateNormal];
-        toggleButton.tag = 101;
+        toggleButton.tag = 100;
 
         CDistrictsTileOverlay *overlay = [[CDistrictsTileOverlay alloc] init];
         [mapView addOverlay:overlay];
@@ -131,21 +142,11 @@
         attribution.backgroundColor = [UIColor clearColor];
         [window addSubview:attribution];
         [window bringSubviewToFront:attribution];
-    } else if (toggleButton.tag == 101) {
+    } else {
         // Was at CDistricts, set to None
         
         [toggleButton setTitle:@"None" forState:UIControlStateNormal];
-        toggleButton.tag = 102;
-        
-    } else {
-        // Was at None, set to Tweetmap
-        
-        [toggleButton setTitle:@"Tweetmap" forState:UIControlStateNormal];
-        toggleButton.tag = 99;
-
-        GheatTileOverlay *overlay = [[GheatTileOverlay alloc] init];
-        [mapView addOverlay:overlay];
-        [overlay release];
+        toggleButton.tag = 101;
     }
 }
 
