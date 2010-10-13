@@ -12,6 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		695047F0126580D40059E9CE /* GheatTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 695047EF126580D30059E9CE /* GheatTileOverlay.m */; };
 		6977A52A121E5E320024FE6F /* CDistrictsTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */; };
 		69BE085A1212807E00B4A2DE /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08571212807C00B4A2DE /* libThree20Network.a */; };
 		69BE085B1212807F00B4A2DE /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE084A1212807300B4A2DE /* libThree20Core.a */; };
@@ -76,6 +77,8 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MapLayerDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLayerDemo_Prefix.pch; sourceTree = "<group>"; };
+		695047EE126580D30059E9CE /* GheatTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GheatTileOverlay.h; sourceTree = "<group>"; };
+		695047EF126580D30059E9CE /* GheatTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GheatTileOverlay.m; sourceTree = "<group>"; };
 		6977A528121E5E320024FE6F /* CDistrictsTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDistrictsTileOverlay.h; sourceTree = "<group>"; };
 		6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDistrictsTileOverlay.m; sourceTree = "<group>"; };
 		69BA8FFA1264E71E00E85A65 /* TileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlay.h; sourceTree = "<group>"; };
@@ -198,6 +201,8 @@
 				6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */,
 				69F152571217259900F36A26 /* OSMTileOverlay.h */,
 				69F152581217259900F36A26 /* OSMTileOverlay.m */,
+				695047EE126580D30059E9CE /* GheatTileOverlay.h */,
+				695047EF126580D30059E9CE /* GheatTileOverlay.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */,
 				69F152591217259900F36A26 /* OSMTileOverlay.m in Sources */,
 				6977A52A121E5E320024FE6F /* CDistrictsTileOverlay.m in Sources */,
+				695047F0126580D40059E9CE /* GheatTileOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
