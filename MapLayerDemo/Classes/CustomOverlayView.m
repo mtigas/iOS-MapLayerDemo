@@ -85,39 +85,6 @@
     return CGPointMake(x, y);
 }
 #pragma mark MKOverlayView methods
-/**
- * Converts a CGRect (coordinates in "screen points" or scaled pixels) into
- * a MKMapRect (coordinates in "map points").
- (
- * Overrides the default MapKit version to deal with the pixel doubling that could
- * happen in an iPhone 4 or better device.
- */
-- (MKMapRect)mapRectForRect:(CGRect)rect {
-    CGRect r = CGRectMake(
-                          rect.origin.x / [[UIScreen mainScreen] scale],
-                          rect.origin.y / [[UIScreen mainScreen] scale],
-                          rect.size.width / [[UIScreen mainScreen] scale],
-                          rect.size.height / [[UIScreen mainScreen] scale]
-                          );
-    return [super mapRectForRect:r];
-}
-/**
- * Inverse of above method.
- * Converts a MKMapRect (coordinates in "map points") into a CGRect (coordinates in
- * "screen points" or scaled pixels).
- *
- * Overrides the default MapKit version to deal with the pixel doubling that could
- * happen in an iPhone 4 or better device.
- */
-- (CGRect)rectForMapRect:(MKMapRect)mapRect {
-    MKMapRect mr = MKMapRectMake(
-                                 mapRect.origin.x * [[UIScreen mainScreen] scale],
-                                 mapRect.origin.y * [[UIScreen mainScreen] scale],
-                                 mapRect.size.width * [[UIScreen mainScreen] scale],
-                                 mapRect.size.height * [[UIScreen mainScreen] scale]
-                                 );
-    return [super rectForMapRect:mr];
-}
 
 /**
  * Called by MapKit when a tile is on the visible space of the map.
@@ -136,11 +103,11 @@
     NSUInteger zoomLevel = [self zoomLevelForZoomScale:zoomScale];
     CGPoint mercatorPoint = [self mercatorTileOriginForMapRect:mapRect];
     
-    NSUInteger tilex = floor(mercatorPoint.x * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
-    NSUInteger tiley = floor(mercatorPoint.y * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
+    NSUInteger tilex = floor(mercatorPoint.x * [self worldTileWidthForZoomLevel:zoomLevel]);
+    NSUInteger tiley = floor(mercatorPoint.y * [self worldTileWidthForZoomLevel:zoomLevel]);
     
     NSString *url = [(id<TileOverlay>)self.overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
-    
+        
     // Given the URL, check the cache to see if we have the tile requested.
     // (In theory, this cache/get/callback process *could* be part of the tile
     // overlay "data model".)
@@ -193,8 +160,8 @@
     NSUInteger zoomLevel = [self zoomLevelForZoomScale:zoomScale];
     CGPoint mercatorPoint = [self mercatorTileOriginForMapRect:mapRect];
     
-    NSUInteger tilex = floor(mercatorPoint.x * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
-    NSUInteger tiley = floor(mercatorPoint.y * [[UIScreen mainScreen] scale] * [self worldTileWidthForZoomLevel:zoomLevel]);
+    NSUInteger tilex = floor(mercatorPoint.x * [self worldTileWidthForZoomLevel:zoomLevel]);
+    NSUInteger tiley = floor(mercatorPoint.y * [self worldTileWidthForZoomLevel:zoomLevel]);
 
     NSString *url = [overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
     
@@ -210,7 +177,7 @@
         UIGraphicsPopContext();
         
         [img release];
-    }    
+    }
 }
 
 #pragma mark TTURLRequestDelegate methods
