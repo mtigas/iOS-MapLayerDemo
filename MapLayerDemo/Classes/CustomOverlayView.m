@@ -127,7 +127,10 @@
         // requested for this tile. (Required so we know what to tell MapKit when
         // it needs to render the tile after we've downloaded it.)
         NSDictionary *metaData = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSValue valueWithCGRect:[self rectForMapRect:mapRect]], @"cgRectValue",
+                                  [NSNumber numberWithDouble:mapRect.origin.x], @"mr_origin_x",
+                                  [NSNumber numberWithDouble:mapRect.origin.y], @"mr_origin_y",
+                                  [NSNumber numberWithDouble:mapRect.size.width], @"mr_size_w",
+                                  [NSNumber numberWithDouble:mapRect.size.height], @"mr_size_h",
                                   [NSNumber numberWithFloat:zoomScale], @"zoomScale",
                                   nil];
         request.userInfo = metaData;
@@ -189,11 +192,20 @@
  */
 -(void)requestDidFinishLoad:(TTURLRequest *)request {
     // Pull out the metadata that we stored.
-    NSValue *cgRectValue = [(NSDictionary *)[request userInfo] objectForKey:@"cgRectValue"];
-    MKMapRect mapRect = [self mapRectForRect:[cgRectValue CGRectValue]];
+    NSNumber *mr_origin_x = [(NSDictionary *)[request userInfo] objectForKey:@"mr_origin_x"];
+    NSNumber *mr_origin_y = [(NSDictionary *)[request userInfo] objectForKey:@"mr_origin_y"];
+    NSNumber *mr_size_w = [(NSDictionary *)[request userInfo] objectForKey:@"mr_size_w"];
+    NSNumber *mr_size_h = [(NSDictionary *)[request userInfo] objectForKey:@"mr_size_h"];
+
+    MKMapRect mapRect = MKMapRectMake(
+                                    [mr_origin_x doubleValue],
+                                    [mr_origin_y doubleValue],
+                                    [mr_size_w doubleValue],
+                                    [mr_size_h doubleValue]);
+    
     NSNumber *zoomScaleNumber = [(NSDictionary *)[request userInfo] objectForKey:@"zoomScale"];
     MKZoomScale zoomScale = [zoomScaleNumber floatValue];
- 
+    
     // "Invalidate" the image at the mapRect -- causes MapKit to attempt another
     // load for this tile.
     [self setNeedsDisplayInMapRect:mapRect zoomScale:zoomScale];
