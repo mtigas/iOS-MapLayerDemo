@@ -1,7 +1,8 @@
 #import "Three20Network/Three20Network.h"
 #import "MapLayerDemoAppDelegate.h"
-#import "GheatTileOverlay.h"
+#import "HaitiTileOverlay.h"
 #import "OSMTileOverlay.h"
+#import "OSMRestrictedBoundsTileOverlay.h"
 #import "CDistrictsTileOverlay.h"
 #import "CustomOverlayView.h"
 
@@ -29,9 +30,7 @@
     
     // ----- Set up the map view
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:window.bounds];
-    CLLocationCoordinate2D defaultPoint = CLLocationCoordinate2DMake(38.9517053, -92.3340724);
-    MKCoordinateSpan defaultSpan = MKCoordinateSpanMake(40.0f, 40.0f);
-    MKCoordinateRegion region = MKCoordinateRegionMake(defaultPoint, defaultSpan);
+    MKCoordinateRegion region = {{38.9f, -96.0f}, {45.0f, 45.0f}};
     [mapView setRegion:region animated:FALSE];
     [mapView regionThatFits:region];
     
@@ -47,7 +46,7 @@
     
     // Allow toggling map layers between the various classes of TileOverlay we have. (See -toggleLayers below)
     UIButton *toggleButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    toggleButton.frame = CGRectMake(window.bounds.size.width-110, 45, 100, 35);
+    toggleButton.frame = CGRectMake(window.bounds.size.width-140, 45, 130, 35);
     toggleButton.tag = 100;
     [toggleButton setTitle:@"OSM" forState:UIControlStateNormal];
     [toggleButton addTarget:self action:@selector(toggleLayers:) forControlEvents:UIControlEventTouchUpInside];
@@ -103,7 +102,7 @@
 
     
     if (toggleButton.tag == 99) {
-        // Was at tweetmap, set to OSM
+        // Was at None, set to OSM
         
         [toggleButton setTitle:@"OSM" forState:UIControlStateNormal];
         toggleButton.tag = 100;
@@ -123,10 +122,29 @@
         [window bringSubviewToFront:attribution];
         
     } else if (toggleButton.tag == 100) {
-        // Was at OSM, set to CDistricts
+        // Was at OSM, set to OSM filtered
+        
+        [toggleButton setTitle:@"OSM-Bounded" forState:UIControlStateNormal];
+        toggleButton.tag = 101;
+        
+        OSMRestrictedBoundsTileOverlay *overlay = [[OSMRestrictedBoundsTileOverlay alloc] init];
+        [mapView addOverlay:overlay];
+        [overlay release];
+        
+        UILabel *attribution = [[UILabel alloc] initWithFrame:CGRectMake(
+                                                                         window.bounds.size.width-250,
+                                                                         window.bounds.size.height-30,
+                                                                         240, 25)];
+        attribution.text = @"OpenStreetMap (CC-BY-SA)";
+        attribution.textAlignment = UITextAlignmentRight;
+        attribution.backgroundColor = [UIColor clearColor];
+        [window addSubview:attribution];
+        [window bringSubviewToFront:attribution];
+    } else if (toggleButton.tag == 101) {
+        // Was at OSM Restricted, set to CDistricts
         
         [toggleButton setTitle:@"CDistricts" forState:UIControlStateNormal];
-        toggleButton.tag = 101;
+        toggleButton.tag = 102;
         
         CDistrictsTileOverlay *overlay = [[CDistrictsTileOverlay alloc] init];
         [mapView addOverlay:overlay];
@@ -141,16 +159,34 @@
         attribution.backgroundColor = [UIColor clearColor];
         [window addSubview:attribution];
         [window bringSubviewToFront:attribution];
-    } else if (toggleButton.tag == 101) {
-        // Was at CDistricts, set to Tweetmap
-        [toggleButton setTitle:@"Tweetmap" forState:UIControlStateNormal];
-        toggleButton.tag = 102;
         
-        GheatTileOverlay *overlay = [[GheatTileOverlay alloc] init];
+        // Zoom to a known good view for US congressional districts
+        MKCoordinateRegion region = {{38.9f, -96.0f}, {45.0f, 45.0f}};
+        [mapView setRegion:region animated:YES];
+    } else if (toggleButton.tag == 102) {
+        // Was at CDistricts, set to Haiti
+        [toggleButton setTitle:@"Haiti" forState:UIControlStateNormal];
+        toggleButton.tag = 103;
+        
+        HaitiTileOverlay *overlay = [[HaitiTileOverlay alloc] init];
         [mapView addOverlay:overlay];
         [overlay release];
+        
+        UILabel *attribution = [[UILabel alloc] initWithFrame:CGRectMake(
+                                                                         window.bounds.size.width-250,
+                                                                         window.bounds.size.height-30,
+                                                                         240, 25)];
+        attribution.text = @"MapBox (CC-BY-SA)";
+        attribution.textAlignment = UITextAlignmentRight;
+        attribution.backgroundColor = [UIColor clearColor];
+        [window addSubview:attribution];
+        [window bringSubviewToFront:attribution];
+        
+        // Zoom to a valid region for Haiti (since the map is pretty resticted in where it will render)
+        MKCoordinateRegion region = {{18.5f, -72.0f}, {3.0f, 3.0f}};
+        [mapView setRegion:region animated:YES];
     } else {
-        // Was at Tweetmap, set to None
+        // Was at Haiti, set to None
         
 
         [toggleButton setTitle:@"None" forState:UIControlStateNormal];

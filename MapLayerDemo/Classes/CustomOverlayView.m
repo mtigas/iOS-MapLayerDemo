@@ -103,6 +103,11 @@
     NSUInteger zoomLevel = [self zoomLevelForZoomScale:zoomScale];
     CGPoint mercatorPoint = [self mercatorTileOriginForMapRect:mapRect];
     
+    // Hook on TileOverlay that allows an overlay to limit the boundaries it attempts to load.
+    if ([(id<TileOverlay>)self.overlay canDrawMapRect:mapRect zoomScale:zoomScale] != YES) {
+        return NO;
+    }
+    
     NSUInteger tilex = floor(mercatorPoint.x * [self worldTileWidthForZoomLevel:zoomLevel]);
     NSUInteger tiley = floor(mercatorPoint.y * [self worldTileWidthForZoomLevel:zoomLevel]);
     

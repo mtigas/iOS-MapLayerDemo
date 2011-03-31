@@ -12,8 +12,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		695047F0126580D40059E9CE /* GheatTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 695047EF126580D30059E9CE /* GheatTileOverlay.m */; };
+		695047F0126580D40059E9CE /* HaitiTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 695047EF126580D30059E9CE /* HaitiTileOverlay.m */; };
 		6977A52A121E5E320024FE6F /* CDistrictsTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */; };
+		697AF0121343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 697AF0111343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.m */; };
 		69BE085A1212807E00B4A2DE /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE08571212807C00B4A2DE /* libThree20Network.a */; };
 		69BE085B1212807F00B4A2DE /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69BE084A1212807300B4A2DE /* libThree20Core.a */; };
 		69BE085D1212808600B4A2DE /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69BE085C1212808600B4A2DE /* Three20.bundle */; };
@@ -77,10 +78,12 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MapLayerDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLayerDemo_Prefix.pch; sourceTree = "<group>"; };
-		695047EE126580D30059E9CE /* GheatTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GheatTileOverlay.h; sourceTree = "<group>"; };
-		695047EF126580D30059E9CE /* GheatTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GheatTileOverlay.m; sourceTree = "<group>"; };
+		695047EE126580D30059E9CE /* HaitiTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaitiTileOverlay.h; sourceTree = "<group>"; };
+		695047EF126580D30059E9CE /* HaitiTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaitiTileOverlay.m; sourceTree = "<group>"; };
 		6977A528121E5E320024FE6F /* CDistrictsTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDistrictsTileOverlay.h; sourceTree = "<group>"; };
 		6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDistrictsTileOverlay.m; sourceTree = "<group>"; };
+		697AF0101343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSMRestrictedBoundsTileOverlay.h; sourceTree = "<group>"; };
+		697AF0111343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSMRestrictedBoundsTileOverlay.m; sourceTree = "<group>"; };
 		69BA8FFA1264E71E00E85A65 /* TileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileOverlay.h; sourceTree = "<group>"; };
 		69BE08411212807300B4A2DE /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../third_party/three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		69BE084D1212807C00B4A2DE /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../third_party/three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -201,8 +204,10 @@
 				6977A529121E5E320024FE6F /* CDistrictsTileOverlay.m */,
 				69F152571217259900F36A26 /* OSMTileOverlay.h */,
 				69F152581217259900F36A26 /* OSMTileOverlay.m */,
-				695047EE126580D30059E9CE /* GheatTileOverlay.h */,
-				695047EF126580D30059E9CE /* GheatTileOverlay.m */,
+				697AF0101343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.h */,
+				697AF0111343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.m */,
+				695047EE126580D30059E9CE /* HaitiTileOverlay.h */,
+				695047EF126580D30059E9CE /* HaitiTileOverlay.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -321,7 +326,8 @@
 				69BE08DF1212832700B4A2DE /* CustomOverlayView.m in Sources */,
 				69F152591217259900F36A26 /* OSMTileOverlay.m in Sources */,
 				6977A52A121E5E320024FE6F /* CDistrictsTileOverlay.m in Sources */,
-				695047F0126580D40059E9CE /* GheatTileOverlay.m in Sources */,
+				695047F0126580D40059E9CE /* HaitiTileOverlay.m in Sources */,
+				697AF0121343FD9700A77325 /* OSMRestrictedBoundsTileOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +389,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
-				USER_HEADER_SEARCH_PATHS = ../third_party/three20/Build/Products/three20;
+				USER_HEADER_SEARCH_PATHS = "../third_party/three20/Build/Products/three20 $(BUILT_PRODUCTS_DIR)/../three20 $(BUILT_PRODUCTS_DIR)/../../three20";
 			};
 			name = Debug;
 		};
@@ -403,7 +409,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
-				USER_HEADER_SEARCH_PATHS = ../third_party/three20/Build/Products/three20;
+				USER_HEADER_SEARCH_PATHS = "../third_party/three20/Build/Products/three20 $(BUILT_PRODUCTS_DIR)/../three20 $(BUILT_PRODUCTS_DIR)/../../three20";
 			};
 			name = Release;
 		};

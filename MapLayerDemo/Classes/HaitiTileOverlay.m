@@ -1,8 +1,8 @@
-#import "CDistrictsTileOverlay.h"
+#import "HaitiTileOverlay.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-@implementation CDistrictsTileOverlay
+@implementation HaitiTileOverlay
 @synthesize boundingMapRect; // from <MKOverlay>
 @synthesize coordinate;      // from <MKOverlay>
 @synthesize defaultAlpha;
@@ -10,7 +10,7 @@
 -(id) init {
     self = [super init];
     
-    defaultAlpha = 1.0f;
+    defaultAlpha = .7;
     
     // I am still not well-versed in map projections, but the Google Mercator projection
     // is slightly off from the "standard" Mercator projection, used by MapKit. (GMerc is used
@@ -35,12 +35,25 @@
     // "Y coordinate is flipped in Mapbox, compared to Google" and provides this conversion:
     NSUInteger newY = abs(y - (pow(2,zoomLevel) - 1));
     
-    return [NSString stringWithFormat:@"http://b.tile.mapbox.com/1.0.0/congressional-districts-110/%d/%d/%d.png",zoomLevel,x,newY];
+    return [NSString stringWithFormat:@"http://c.tile.mapbox.com/1.0.0/haiti-terrain/%d/%d/%d.jpg",zoomLevel,x,newY];
 }
 
 - (BOOL)canDrawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale {
-    // Limit this overlay to only display within the continental United States.
-    // Roughly within (50, -127), (24, -66), in degrees.
+    // This tile set is only available for zoom 5-16
+    // See http://mapbox.com/tileset/haiti-terrain
+    
+    // TODO: shared code (zoomLevelForZoomScale from CustomOverlayView)
+    CGFloat realScale = zoomScale / [[UIScreen mainScreen] scale];
+    NSUInteger zoomLevel = (NSUInteger)(log(realScale)/log(2.0)+20.0);
+    
+    zoomLevel += ([[UIScreen mainScreen] scale] - 1.0);
+    
+    if ((zoomLevel < 5) || (zoomLevel > 16)) {
+        return NO;
+    }
+    
+    // Limit this overlay to only display tiles over the general Haiti area.
+    // Roughly within (24.5, -83), (14, -60), in degrees.
     
     // Turn center to bounds
     MKCoordinateRegion _region = MKCoordinateRegionForMapRect(mapRect);
@@ -49,13 +62,12 @@
     CLLocationDegrees left_bound = _region.center.longitude - (_region.span.longitudeDelta / 2.0);
     CLLocationDegrees right_bound = _region.center.longitude + (_region.span.longitudeDelta / 2.0);
     
-    if ( (left_bound > -66.0f) ||   // The "west end" of this tile is east of -66
-        (right_bound < -127.0f) || // The "east end" of this tile is west of -127
-        (top_bound < 24.0f) ||     // The "top" of this tile is south of 24
-        (bottom_bound > 50.0f) ) { // The "bottom" of this tile is north of 50
+    if ( (left_bound > -60.0f) ||   // The "west end" of this tile is east of -66
+        (right_bound < -83.0f) || // The "east end" of this tile is west of -127
+        (top_bound < 14.0f) ||     // The "top" of this tile is south of 24
+        (bottom_bound > 24.5f) ) { // The "bottom" of this tile is north of 50
         return NO;
     }
     return YES;
 }
-
 @end
