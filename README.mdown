@@ -5,24 +5,27 @@ in iOS 4.0.**:
 
 The *[MKOverlay][mkoverlay]* protocol and *[MKOverlayView][mkoverlayview]* class and how
 to use these to render custom tile layers [a la Google Maps API][imagemaptype]. (i.e. Google
-Maps-compatible tile layers from [Mapnik](http://mapnik.org/)/Tilecache, gheat, etc. Gheat and OpenStreetMap layer demos are included.)
+Maps-compatible tile layers from [Mapnik][mapnik]/Tilecache, gheat, etc.) Examples include tilesets from [OpenStreetMap][osm] and [MapBox][mapbox].
+
+(Caveat: the OpenStreetMap renders opaquely *over* the default Google layer, it does not replace it.)
 
 [mkdoc]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MapKit_Framework_Reference/
 [mkoverlay]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlay_protocol/Reference/Reference.html
 [mkoverlayview]: https://developer.apple.com/iphone/library/documentation/MapKit/Reference/MKOverlayView_class/Reference/Reference.html
 [imagemaptype]: https://code.google.com/apis/maps/documentation/javascript/maptypes.html#ImageMapTypes
+[mapnik]: http://mapnik.org/
+[osm]: http://www.openstreetmap.org/
+[mapbox]: http://mapbox.com/tiles
 
 [Comments and feedback are welcome.](https://mike.tig.as/contact/)
 
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen1.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen2.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100814/newscreen2.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2-lg.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20100811/screen2.png" width="325"/></a>
-
-(iPhone 4 screenshot is outdated.)
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen1.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen2.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen2.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen3.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen3.png" width="225"/></a>
 
 ## What? ##
 
-I refactored [django-gheat](http://github.com/mtigas/django-gheat) as a side project a few
-weeks ago. I’ve been working on iOS development a bit lately and was seeking a slick way to
-plug the **[django-gheat demo][gheat_demo] tileserver** into the iPhone. The Google Maps API
+I refactored [django-gheat](http://github.com/mtigas/django-gheat) as a side project and I’ve
+been working on iOS development a bit lately and was seeking a slick way to
+plug the **django-gheat demo tileserver** into the iPhone. The Google Maps API
 just doesn’t have enough performance in the browser to make for a decent user experience.
 
 Some conversation threads recommended combining a UIScrollView with [CATiledLayer][catiledlayer],
@@ -31,7 +34,6 @@ but this seemed unwieldy to couple with the existing MapKit framework.
 Lo and behold, iOS 4.0 added custom overlay functionality to MapKit, though I have not seen *any*
 mention or example of it’s use to date.
 
-[gheat_demo]: http://gheat.miketigas.com/
 [catiledlayer]: https://developer.apple.com/mac/library/documentation/GraphicsImaging/Reference/CATiledLayer_class/Introduction/Introduction.html
 
 ## Notes ##
