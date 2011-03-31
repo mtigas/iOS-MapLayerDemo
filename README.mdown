@@ -19,7 +19,7 @@ Maps-compatible tile layers from [Mapnik][mapnik]/Tilecache, gheat, etc.) Exampl
 
 [Comments and feedback are welcome.](https://mike.tig.as/contact/)
 
-<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen1.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen2.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen2.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen3.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen3.png" width="225"/></a>
+<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen1.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen1.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen4.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen4.png" width="225"/></a>&nbsp;<a href="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen3.png"><img src="https://d2p12wh0p3fo1n.cloudfront.net/files/20110330/screen3.png" width="225"/></a>
 
 ## What? ##
 
