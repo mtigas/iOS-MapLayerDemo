@@ -157,7 +157,7 @@
         [window bringSubviewToFront:attribution];
         
         // Zoom to a known good view for US congressional districts
-        MKCoordinateRegion region = {{40.0f, -96.0f}, {45.0f, 45.0f}};
+        MKCoordinateRegion region = {{30.0f, -96.0f}, {58.0f, 58.0f}};
         [mapView setRegion:region animated:YES];
     } else if (toggleButton.tag == 102) {
         // Was at CDistricts, set to Haiti
