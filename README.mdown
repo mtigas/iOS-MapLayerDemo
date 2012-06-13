@@ -50,8 +50,3 @@ of the *next* (or scale-appropriate) zoom level to maintain a one-to-one mapping
 The `[MKOverlayView -canDrawMapRect…]` and `[MKOverlayView -drawMapRect…]` methods rely on asynchronously
 downloading tiles as requested (by `-canDrawMapRect`) into cache, and then using that cache in the
 `-drawMapRect` method after the success callback notifies MapKit to try the tile again. 
-
-I am using the Three20Network sub-library from [Facebook’s Three20](http://github.com/facebook/three20) and using
-the [TTURLRequest](http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLRequest.h)/
-[TTURLCache](http://github.com/facebook/three20/blob/master/src/Three20Network/Headers/TTURLCache.h) stack
-to handle cache storage to disk/memory. The necessary sub-libraries are bundled in this repository.

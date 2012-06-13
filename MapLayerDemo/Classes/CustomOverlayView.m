@@ -1,6 +1,5 @@
 #import "CustomOverlayView.h"
 #import "TileOverlay.h"
-#import "Three20Network/Three20Network.h"
 
 #pragma mark Private methods
 @interface CustomOverlayView()
@@ -116,39 +115,40 @@
     // Given the URL, check the cache to see if we have the tile requested.
     // (In theory, this cache/get/callback process *could* be part of the tile
     // overlay "data model".)
-    TTURLCache *cache = [TTURLCache sharedCache];
-    if ([cache hasDataForURL:url]) {
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%d%d%d", tilex, tiley, zoomLevel]];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         // This tile is in cache, so let MapKit know it can perform the render.
         return YES;
     } else {
         // Perform a background HTTP request for this map tile.
-        // (The delegate's didFinishLoad method will call setNeedsDisplayInMapRect,
-        // which notifies MapKit that it should check this (and try to render
-        // the tile) once again
-        TTURLRequest *request = [TTURLRequest requestWithURL:url delegate:self];
         
-        // Store some metadata in the request so that the delegate
-        // can later figure out what mapRect and what zoomScale were originally
-        // requested for this tile. (Required so we know what to tell MapKit when
-        // it needs to render the tile after we've downloaded it.)
-        NSDictionary *metaData = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithDouble:mapRect.origin.x], @"mr_origin_x",
-                                  [NSNumber numberWithDouble:mapRect.origin.y], @"mr_origin_y",
-                                  [NSNumber numberWithDouble:mapRect.size.width], @"mr_size_w",
-                                  [NSNumber numberWithDouble:mapRect.size.height], @"mr_size_h",
-                                  [NSNumber numberWithFloat:zoomScale], @"zoomScale",
-                                  nil];
-        request.userInfo = metaData;
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:5.0];
         
-        TTURLDataResponse* response = [[TTURLDataResponse alloc] init];
-        request.response = response;
-        TT_RELEASE_SAFELY(response);
+        [NSURLConnection sendAsynchronousRequest:request 
+                                           queue:[NSOperationQueue mainQueue] 
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {            
+                                   [data writeToFile:path atomically:YES];
+                                   
+                                   NSNumber *mr_origin_x = [NSNumber numberWithDouble:mapRect.origin.x];
+                                   NSNumber *mr_origin_y = [NSNumber numberWithDouble:mapRect.origin.y];
+                                   NSNumber *mr_size_w = [NSNumber numberWithDouble:mapRect.size.width];
+                                   NSNumber *mr_size_h = [NSNumber numberWithDouble:mapRect.size.height];
+                                   
+                                   MKMapRect mapRect = MKMapRectMake(
+                                                                     [mr_origin_x doubleValue],
+                                                                     [mr_origin_y doubleValue],
+                                                                     [mr_size_w doubleValue],
+                                                                     [mr_size_h doubleValue]);
+                                   
+                                   NSNumber *zoomScaleNumber = [NSNumber numberWithFloat:zoomScale];
+                                   MKZoomScale zoomScale = [zoomScaleNumber floatValue];
+                                   
+                                   // "Invalidate" the image at the mapRect -- causes MapKit to attempt another
+                                   // load for this tile.
+                                   [self setNeedsDisplayInMapRect:mapRect zoomScale:zoomScale];
+                               }];
         
-        request.cachePolicy = TTURLRequestCachePolicyLocal;
-
-        // If you do not perform this selector from the main thread, your request may not
-        // complete. I think.
-        [request performSelectorOnMainThread:@selector(send) withObject:nil waitUntilDone:NO];
         return NO;
     }
 }
@@ -171,61 +171,23 @@
     NSUInteger tilex = floor(mercatorPoint.x * [self worldTileWidthForZoomLevel:zoomLevel]);
     NSUInteger tiley = floor(mercatorPoint.y * [self worldTileWidthForZoomLevel:zoomLevel]);
 
-    NSString *url = [overlay urlForPointWithX:tilex andY:tiley andZoomLevel:zoomLevel];
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%d%d%d", tilex, tiley, zoomLevel]];
     
     // Load the image from cache.
-    TTURLCache *cache = [TTURLCache sharedCache];
-    NSData *imageData = [cache dataForURL:url];
+    NSData *imageData = [NSData dataWithContentsOfFile:path];
+    
     if (imageData != nil) {
+        // Perform the image render on the current UI context
         UIImage *img = [[UIImage imageWithData:imageData] retain];
         
-        // Perform the image render on the current UI context
         UIGraphicsPushContext(context);
-        [img drawInRect:[self rectForMapRect:mapRect] blendMode:kCGBlendModeNormal alpha:overlay.defaultAlpha];
+        [img drawInRect:[self rectForMapRect:mapRect] 
+              blendMode:kCGBlendModeNormal 
+                  alpha:overlay.defaultAlpha];
         UIGraphicsPopContext();
         
         [img release];
     }
-}
-
-#pragma mark TTURLRequestDelegate methods
-/**
- * Gets called if a HTTP request to a tile was successful.
- *
- * Simply calls setNeedsDisplay for the tile, so that MapKit attempts to draw
- * the tile again.
- */
--(void)requestDidFinishLoad:(TTURLRequest *)request {
-    // Pull out the metadata that we stored.
-    NSNumber *mr_origin_x = [(NSDictionary *)[request userInfo] objectForKey:@"mr_origin_x"];
-    NSNumber *mr_origin_y = [(NSDictionary *)[request userInfo] objectForKey:@"mr_origin_y"];
-    NSNumber *mr_size_w = [(NSDictionary *)[request userInfo] objectForKey:@"mr_size_w"];
-    NSNumber *mr_size_h = [(NSDictionary *)[request userInfo] objectForKey:@"mr_size_h"];
-
-    MKMapRect mapRect = MKMapRectMake(
-                                    [mr_origin_x doubleValue],
-                                    [mr_origin_y doubleValue],
-                                    [mr_size_w doubleValue],
-                                    [mr_size_h doubleValue]);
-    
-    NSNumber *zoomScaleNumber = [(NSDictionary *)[request userInfo] objectForKey:@"zoomScale"];
-    MKZoomScale zoomScale = [zoomScaleNumber floatValue];
-    
-    // "Invalidate" the image at the mapRect -- causes MapKit to attempt another
-    // load for this tile.
-    [self setNeedsDisplayInMapRect:mapRect zoomScale:zoomScale];
-}
-
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)dealloc {
-    // Cancel any outstanding tile requests, otherwise the callbacks
-    // to this delegate will crash when this OverlayView is gone.
-    [[TTURLRequestQueue mainQueue] cancelRequestsWithDelegate:self];
-    
-    [super dealloc];
 }
 
 @end

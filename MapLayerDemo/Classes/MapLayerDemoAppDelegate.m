@@ -1,4 +1,3 @@
-#import "Three20Network/Three20Network.h"
 #import "MapLayerDemoAppDelegate.h"
 #import "HaitiTileOverlay.h"
 #import "OSMTileOverlay.h"
@@ -10,23 +9,11 @@
 
 @synthesize window;
 
-
 #pragma mark -
 #pragma mark Application lifecycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
-    // ----- Set options for all URL requests
-    TTURLRequestQueue *queue = [[TTURLRequestQueue alloc] init];
-    [queue setMaxContentLength:0];
-    [TTURLRequestQueue setMainQueue:queue];
-    [queue release];
-    
-    TTURLCache *cache = [[TTURLCache alloc] initWithName:@"MapTileCache"];
-    cache.invalidationAge = 300.0f; // Five minutes
-    [TTURLCache setSharedCache:cache];
-    [cache release];
     
     // ----- Set up the map view
     MKMapView *mapView = [[MKMapView alloc] initWithFrame:window.bounds];
@@ -100,6 +87,15 @@
     // Remove all overlays from the map (if there are any)
     [mapView removeOverlays:mapView.overlays];
 
+    // Clear out the tile cache
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *cacheFiles = [fileManager contentsOfDirectoryAtPath:NSTemporaryDirectory() error:&error];
+    for (NSString *file in cacheFiles) {
+        error = nil;
+        [fileManager removeItemAtPath:[NSTemporaryDirectory() stringByAppendingPathComponent:file] error:&error];
+        /* handle error */
+    }
     
     if (toggleButton.tag == 99) {
         // Was at None, set to OSM
@@ -161,7 +157,7 @@
         [window bringSubviewToFront:attribution];
         
         // Zoom to a known good view for US congressional districts
-        MKCoordinateRegion region = {{38.9f, -96.0f}, {45.0f, 45.0f}};
+        MKCoordinateRegion region = {{30.0f, -96.0f}, {58.0f, 58.0f}};
         [mapView setRegion:region animated:YES];
     } else if (toggleButton.tag == 102) {
         // Was at CDistricts, set to Haiti
@@ -191,13 +187,12 @@
 
         [toggleButton setTitle:@"None" forState:UIControlStateNormal];
         toggleButton.tag = 99;
-}
+    }
 }
 
 
 #pragma mark -
 #pragma mark MKMapViewDelegate
-
 
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     // If using *several* MKOverlays simultaneously, you could test against the class
@@ -217,6 +212,5 @@
     [window release];
     [super dealloc];
 }
-
 
 @end
